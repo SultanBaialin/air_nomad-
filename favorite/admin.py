@@ -3,4 +3,3 @@
 # from .models import Favorite
 #
 # admin.site.register(Favorite)
-
