@@ -1,0 +1,15 @@
+Pillow
+django
+djangorestframework
+psycopg2-binary
+drf-yasg
+django-filter
+dj-rest-auth
+python_decouple
+djangorestframework-simplejwt
+django-ckeditor
+asgiref==3.6.0
+backports.zoneinfo==0.2.1
+certifi==2022.12.7
+charset-normalizer==3.0.1
+coreapi==2.3.3
