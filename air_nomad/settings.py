@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'decouple',
     'ckeditor',
-    'django.contrib.staticfiles',
-    'drf_yasg',
+
 
     # add_apps
     'product',
