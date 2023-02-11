@@ -7,7 +7,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from . import serializers
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
-from .send_mail import send_confirmation_email, send_reset_email
+from air_nomad.tasks import send_confirmation_tasks_email
+from .send_mail import send_reset_email
 
 User = get_user_model()
 
@@ -21,7 +22,7 @@ class RegistrationView(APIView):
             user = serializer.save()
             if user:
                 try:
-                    send_confirmation_email(user.email, user.activation_code)
+                    send_confirmation_tasks_email.delay(user.email, user.activation_code)
                     # send_confirm_email_task.delay(user.email, user.activation_code)
                 except:
                     return Response({'msg': 'Registered but troubles with mail!',
