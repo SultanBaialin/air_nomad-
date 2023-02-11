@@ -16,3 +16,4 @@ coreapi==2.3.3
 redis-server
 redis-tools
 celery
+django-cors-headers
