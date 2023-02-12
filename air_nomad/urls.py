@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
@@ -22,14 +23,13 @@ from drf_yasg import openapi
 from rest_framework.routers import SimpleRouter
 from django.conf import settings
 
-...
 
 from category.views import CategoryViewSet
-
+from product.views import ProductViewSet
 
 router = SimpleRouter()
 router.register('categories', CategoryViewSet)
-
+router.register('products', ProductViewSet)
 
 
 schema_view = get_schema_view(
