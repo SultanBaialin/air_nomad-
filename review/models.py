@@ -1,9 +1,9 @@
-from django.db import models
-from product.models import Product
-from django.contrib.auth import get_user_model
+# from django.db import models
+# from product.models import Product
+# from django.contrib.auth import get_user_model
 
 
-User = get_user_model()
+# User = get_user_model()
 
 #
 # class Review(models.Model):
