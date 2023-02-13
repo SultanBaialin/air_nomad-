@@ -231,7 +231,8 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ["http://127.0.0.1:3000"]
+
+# ALLOWED_HOSTS = ["http://127.0.0.1:3000"], ["http://127.0.0.1"]
 # CORS_ORIGIN_WHITELIST = [
 #     'http://127.0.0.1:3000'
 # ]

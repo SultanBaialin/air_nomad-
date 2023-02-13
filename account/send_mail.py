@@ -17,6 +17,7 @@ def send_reset_email(user):
     email = user.email
     send_mail('Letter with password reset code!', f"Your reset code {code}", 'from@example.com', [email, ], fail_silently=False)
 
+
 def send_notification(user_email, order_id, price):
     send_mail(
         'Уведомление о создании заказа!',
