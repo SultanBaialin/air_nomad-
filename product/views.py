@@ -1,14 +1,24 @@
 from rest_framework.viewsets import ModelViewSet
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from rest_framework import permissions, response
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
+
 
 from .models import Product
 from . import serializers
 from .permission import IsAuthor
 
+class StandartResultPagination(PageNumberPagination):
+    page_size = 4
+    page_query_param = 'page'
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
+    pagination_class = StandartResultPaginationfilter_backends = (SearchFilter, DjangoFilterBackend)
+    search_fields = ('title',)
+    filterset_fields = ('category')
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
