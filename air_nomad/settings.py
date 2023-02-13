@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'decouple',
     'ckeditor',
+    'corsheaders',
 
     # add_apps
     'product',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'account',
     'favorite',
     'order',
+    'review',
 
 ]
 
@@ -66,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'air_nomad.urls'
@@ -141,6 +145,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -218,3 +226,15 @@ CKEDITOR_CONFIGS = {
         'width': 300,
     },
 }
+
+REDIS_HOST = config('REDIS_HOST')
+REDIS_PORT = config('REDIS_PORT')
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ["http://127.0.0.1:3000"]
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:3000'
+]
