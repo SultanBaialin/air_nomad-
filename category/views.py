@@ -7,7 +7,7 @@ from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from category import serializers
-from category.models import Category, CategoryCountry
+from category.models import Category, CountryCategory
 
 
 # Create your views here.
@@ -24,7 +24,7 @@ class CategoryViewSet(ModelViewSet):
 
 
 class CountryCategoryViewSet(ModelViewSet):
-    queryset = CategoryCountry.objects.all()
+    queryset = CountryCategory.objects.all()
     serializer_class = serializers.CategorySerializer
 
     def get_permissions(self):
