@@ -26,6 +26,9 @@ class CountryCategory(Category):
     slug1 = models.SlugField(max_length=50, primary_key=True)
     name1 = models.CharField(max_length=50, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 @receiver(pre_save, sender=Category)
 def category_rpe_save(sender, instance, *args, **kwargs):
@@ -33,3 +36,10 @@ def category_rpe_save(sender, instance, *args, **kwargs):
     # print(instance, '--------------')
     if not instance.slug:
         instance.slug = slugify(instance.name)
+
+class Category_Country(models.Model):
+    slug = models.SlugField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name

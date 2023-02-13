@@ -1,6 +1,6 @@
-# from django.contrib import admin
-#gi
-# from .models import Favorite
-#
-# admin.site.register(Favorite)
+from django.contrib import admin
+
+from .models import Favorites
+
+admin.site.register(Favorites)
 

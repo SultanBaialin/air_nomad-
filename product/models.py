@@ -38,15 +38,16 @@ class Product(models.Model):
 
     title = models.CharField(max_length=150)
     description = RichTextField()
-    image1 = models.ImageField(upload_to='images')
-    image2 = models.ImageField(upload_to='images')
-    image3 = models.ImageField(upload_to='images')
-    image4 = models.ImageField(upload_to='images')
-    image5 = models.ImageField(upload_to='images')
     price = models.DecimalField(max_digits=12, decimal_places=2)
     stock = models.CharField(choices=STATUS_CHOISES, max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+class ProductImages(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='images/')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
 
