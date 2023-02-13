@@ -23,11 +23,11 @@ class Category(models.Model):
 
 
 class CategoryCountry(models.Model):
-    slug = models.SlugField(max_length=50, primary_key=True)
-    name = models.CharField(max_length=50, unique=True)
+    slug1 = models.SlugField(max_length=50, primary_key=True)
+    name1 = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.name1
 
 
 @receiver(pre_save, sender=Category)

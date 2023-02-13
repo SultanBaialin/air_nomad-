@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from category.models import Category, CountryCategory
+from category.models import Category, CategoryCountry
 from ckeditor.fields import RichTextField
 
 User = get_user_model()
@@ -14,7 +14,7 @@ class Product(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.RESTRICT, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
-    country_category = models.ForeignKey(CountryCategory, related_name='country', on_delete=models.RESTRICT)
+    country_category = models.ForeignKey(CategoryCountry, related_name='country', on_delete=models.RESTRICT)
 
     city = models.CharField(max_length=60)
     address = models.CharField(max_length=60)
