@@ -35,3 +35,4 @@ def category_rpe_save(sender, instance, *args, **kwargs):
     # print(instance, '--------------')
     if not instance.slug:
         instance.slug = slugify(instance.name)
+
