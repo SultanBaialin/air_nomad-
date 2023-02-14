@@ -27,4 +27,13 @@ class Migration(migrations.Migration):
                 ('country', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='category.countrycategory')),
             ],
         ),
+        migrations.CreateModel(
+            name='CountryCategory',
+            fields=[
+                ('category_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, to='category.category')),
+                ('slug1', models.SlugField(primary_key=True, serialize=False)),
+                ('name1', models.CharField(max_length=50, unique=True)),
+            ],
+            bases=('category.category',),
+        ),
     ]

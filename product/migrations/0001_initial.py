@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('category', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -37,9 +37,11 @@ class Migration(migrations.Migration):
                 ('washing', models.BooleanField()),
                 ('medicine', models.BooleanField()),
                 ('kitchen', models.BooleanField()),
+
                 ('image1', models.ImageField(upload_to='images')),
                 ('image2', models.ImageField(upload_to='images')),
                 ('image3', models.ImageField(upload_to='images')),
+
                 ('title', models.CharField(max_length=150)),
                 ('description', ckeditor.fields.RichTextField()),
                 ('price', models.DecimalField(decimal_places=2, max_digits=12)),
