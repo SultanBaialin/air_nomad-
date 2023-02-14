@@ -18,13 +18,13 @@ class Product(models.Model):
 
     city = models.CharField(max_length=60)
     address = models.CharField(max_length=60)
-    house_number = models.SmallIntegerField()
-    flat_number = models.SmallIntegerField()
+    house_number = models.PositiveSmallIntegerField()
+    flat_number = models.PositiveSmallIntegerField()
 
-    guests = models.SmallIntegerField()
-    rooms = models.SmallIntegerField()
-    beds = models.SmallIntegerField()
-    bathrooms = models.SmallIntegerField()
+    guests = models.PositiveSmallIntegerField()
+    rooms = models.PositiveSmallIntegerField()
+    beds = models.PositiveSmallIntegerField()
+    bathrooms = models.PositiveSmallIntegerField()
 
     wifi = models.BooleanField()
     fridge = models.BooleanField()
@@ -35,6 +35,10 @@ class Product(models.Model):
     washing = models.BooleanField()
     medicine = models.BooleanField()
     kitchen = models.BooleanField()
+
+    image1 = models.ImageField(upload_to='images')
+    image2 = models.ImageField(upload_to='images')
+    image3 = models.ImageField(upload_to='images')
 
     title = models.CharField(max_length=150)
     description = RichTextField()
