@@ -4,9 +4,9 @@ from django.contrib import admin
 
 from django.contrib import admin
 
-from category.models import Category, Category_Country
+from category.models import Category, CountryCategory
 
 # Register your models here.
 
 admin.site.register(Category)
-admin.site.register(Category_Country)
+admin.site.register(CountryCategory)
