@@ -16,7 +16,8 @@ class StandartResultPagination(PageNumberPagination):
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
-    pagination_class = StandartResultPaginationfilter_backends = (SearchFilter, DjangoFilterBackend)
+    pagination_class = StandartResultPaginationfilter = (SearchFilter, DjangoFilterBackend)
+    filter_backends = (SearchFilter, DjangoFilterBackend)
     search_fields = ('title',)
     filterset_fields = ('category')
 
