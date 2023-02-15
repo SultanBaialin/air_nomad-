@@ -11,15 +11,15 @@ from . import serializers
 from .permission import IsAuthor
 
 class StandartResultPagination(PageNumberPagination):
-    page_size = 4
+    page_size = 9
     page_query_param = 'page'
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
-    pagination_class = StandartResultPaginationfilter = (SearchFilter, DjangoFilterBackend)
+    pagination_class = StandartResultPagination
     filter_backends = (SearchFilter, DjangoFilterBackend)
-    search_fields = ('title',)
-    filterset_fields = ('category')
+    search_fields = ('name',)
+    filterset_fields = ('category', 'country_category')
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
