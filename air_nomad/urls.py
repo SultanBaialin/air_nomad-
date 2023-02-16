@@ -24,12 +24,13 @@ from rest_framework.routers import SimpleRouter
 from django.conf import settings
 
 
-from category.views import CategoryViewSet
+from category.views import CategoryViewSet, CountryCategoryViewSet
 from product.views import ProductViewSet
 
 router = SimpleRouter()
 router.register('categories', CategoryViewSet)
 router.register('products', ProductViewSet)
+router.register('country_categories', CountryCategoryViewSet)
 
 
 schema_view = get_schema_view(
