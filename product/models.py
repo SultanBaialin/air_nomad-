@@ -7,11 +7,6 @@ User = get_user_model()
 
 
 class Product(models.Model):
-    STATUS_CHOISES =(
-        ('in_stock', 'активен'),
-        ('out_of_stock', 'неактивен')
-    )
-
     owner = models.ForeignKey(User, on_delete=models.RESTRICT, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
     country_category = models.ForeignKey(CountryCategory, related_name='country', on_delete=models.RESTRICT)
@@ -43,7 +38,7 @@ class Product(models.Model):
     title = models.CharField(max_length=150)
     description = RichTextField()
     price = models.DecimalField(max_digits=12, decimal_places=2)
-    stock = models.CharField(choices=STATUS_CHOISES, max_length=50)
+    stock = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -51,7 +46,6 @@ class Product(models.Model):
 
 
 class ProductImages(models.Model):
-    title = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.CharField(max_length=300)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
 
