@@ -144,8 +144,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -231,7 +234,6 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-
 
 # ALLOWED_HOSTS = ["http://127.0.0.1:3000"], ["http://127.0.0.1"]\
 # CORS_ORIGIN_WHITELIST = [
