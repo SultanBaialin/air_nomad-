@@ -9,8 +9,11 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from air_nomad.tasks import send_confirmation_tasks_email
 from .send_mail import send_reset_email
+import logging
 
 User = get_user_model()
+
+logger = logging.getLogger('main')
 
 
 class RegistrationView(APIView):
@@ -25,9 +28,12 @@ class RegistrationView(APIView):
                     send_confirmation_tasks_email.delay(user.email, user.activation_code)
                     # send_confirm_email_task.delay(user.email, user.activation_code)
                 except:
+                    logger.info('registration')
                     return Response({'msg': 'Registered but troubles with mail!',
                                      'data': serializer.data}, status=201)
+            logger.info('registration')
             return Response(serializer.data, status=201)
+        logger.debug('registration')
         return Response('Bad request', status=404)
 
 
@@ -40,10 +46,12 @@ class ActivationView(APIView):
             user.is_active = True
             user.activation_code = ''
             user.save()
+            logger.info('active')
             return Response({
                 'msg': 'Successfully activated!'
             }, status=200)
         except User.DoesNotExist:
+            logger.debug('active')
             return Response ({'msg': 'Link expired!'}, status=400)
 
 
@@ -58,6 +66,7 @@ class LogoutView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        logger.info('logout')
         return Response('Successfully logged out!', status=200)
 
 
@@ -73,8 +82,10 @@ class ForgotPasswordView(APIView):
             user.create_activation_code()
             user.save()
             send_reset_email(user)
+            logger.info('code sent')
             return Response('Check your email. We send a code', 200)
         except User.DoesNotExist:
+            logger.warning('does not exist')
             return Response('User with this email does not exist!', status=400)
 
 
@@ -85,4 +96,5 @@ class RestorePasswordView(APIView):
         serializer = serializers.RestorePasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        logger.info('password changed')
         return Response('Password changed successfully!')
