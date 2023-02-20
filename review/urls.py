@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('review/', views.ReviewCreateView.as_view()),
-    path('review/<int:pk>/', views.ReviewDetailView.as_view())
+    path('', views.ReviewCreateAPIView.as_view()),   # api/v1/reviews POST
+    path('<int:pk>/', views.ReviewUpdateDeleteApiView.as_view()),
 ]
