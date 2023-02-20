@@ -52,7 +52,6 @@ urlpatterns = [
    path('admin/', admin.site.urls),
    path('api/v1/accounts/', include('account.urls')),
    path('api/v1/', include('review.urls')),
-   path('api/v1/', include('rating.urls')),
    path('api/v1/', include(router.urls)),
 
 ]
