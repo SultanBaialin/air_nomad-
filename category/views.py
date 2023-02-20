@@ -33,6 +33,8 @@ class CountryCategoryViewSet(ModelViewSet):
 
     def get_permissions(self):
         if self.action in ('retrieve', 'list'):
+            logger.info('allow')
             return [permissions.AllowAny()]
         else:
+            logger.warning('only admin')
             return [permissions.IsAdminUser()]
