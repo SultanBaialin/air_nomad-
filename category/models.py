@@ -16,6 +16,9 @@ class CountryCategory(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     slug = models.SlugField(max_length=50, primary_key=True)
