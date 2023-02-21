@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'favorite',
     'order',
     'review',
-    'rating'
 
 ]
 
