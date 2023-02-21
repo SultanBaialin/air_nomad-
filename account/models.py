@@ -37,7 +37,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField('email address', unique=True)
     password = models.CharField(max_length=100)
     activation_code = models.CharField(max_length=255, blank=True)
-    username = models.CharField(max_length=100, blank=True)
+    username = models.CharField(max_length=100, blank=True, unique=False)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     avatar = models.ImageField(upload_to='avatars/', blank=True, default='avatars/default_avatar.jpg')
@@ -58,3 +58,4 @@ class CustomUser(AbstractUser):
         import uuid
         code = str(uuid.uuid4())
         self.activation_code = code
+

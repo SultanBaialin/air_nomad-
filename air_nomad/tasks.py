@@ -9,5 +9,6 @@ def send_confirmation_tasks_email(user, code):
     send_confirmation_email(user=user, code=code)
 
 
+@app.task
 def send_notification_task(user_email, order_id, price):
     send_notification(user_email, order_id, price)
