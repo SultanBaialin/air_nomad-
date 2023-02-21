@@ -1,52 +1,37 @@
-# from rest_framework import generics, permissions, mixins
-# from rest_framework.generics import GenericAPIView
-#
-# from .models import Review
-# from . import serializers
-# from .permissions import IsAuthorOrAdminOrPostOwner
-# from product.permissions import IsAuthor
-#
-# import logging
-#
-# logger = logging.getLogger('main')
-#
-#
-# class CustomUpdateDestroyAPIView(mixins.UpdateModelMixin,
-#                                  mixins.DestroyModelMixin,
-#                                  GenericAPIView):
-#
-#     def put(self, request, *args, **kwargs):
-#         logger.info('success update')
-#         return self.update(request, *args, **kwargs)
-#
-#     def patch(self, request, *args, **kwargs):
-#         logger.info('success update')
-#         return self.partial_update(request, *args, **kwargs)
-#
-#     def delete(self, request, *args, **kwargs):
-#         logger.info('success delete')
-#         return self.destroy(request, *args, **kwargs)
-#
-#
-# class ReviewCreateView(generics.ListCreateAPIView):
-#     queryset = Review.objects.all()
-#     serializer_class = serializers.ReviewCreateSerializer
-#
-#     def perform_create(self, serializer):
-#         logger.info('success create')
-#         serializer.save(owner=self.request.user)
-#
-#
-# class ReviewDetailView(CustomUpdateDestroyAPIView):
-#     queryset = Review.objects.all()
-#     serializer_class = serializers.ReviewCreateSerializer
-#
-#     def get_permissions(self):
-#         if self.request.method in ('PUT', 'PATCH'):
-#             logger.warning('only authenticated, author')
-#             return [permissions.IsAuthenticated(), IsAuthor()]
-#         elif self.request.method == 'DELETE':
-#             logger.warning('only authenticated, author')
-#             return [permissions.IsAuthenticated(), IsAuthorOrAdminOrPostOwner()]
-#         logger.warning('authenticated or read')
-#         return [permissions.IsAuthenticatedOrReadOnly()]
+from rest_framework import mixins, permissions
+from rest_framework.generics import CreateAPIView, GenericAPIView
+
+from product.permission import IsAuthor
+from review.models import Review
+from . import serializers
+
+
+class UpdateDestroyAPIView(mixins.UpdateModelMixin,
+                                   mixins.DestroyModelMixin,
+                                   GenericAPIView):
+    """
+    Concrete view forupdating or deleting a model instance.
+    """
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+class ReviewCreateAPIView(CreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = serializers.ReviewSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class ReviewUpdateDeleteApiView(UpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = serializers.ReviewUpdateSerializer
+    permission_classes = (permissions.IsAuthenticated, IsAuthor)
