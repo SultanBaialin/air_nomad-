@@ -105,7 +105,7 @@ class SendSpamView(APIView):
 
     def post(self, request):
         serializer = serializers.Spam_ContactsSerializer(data=request.data)
-        user = serializer.save()
+        user = request.user
         send_spam_email.delay(user.email)
 
 

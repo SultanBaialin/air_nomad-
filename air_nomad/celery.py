@@ -13,8 +13,8 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    'send-spam-every-1-minutes': {
+    'send-spam-every-30-seconds': {
         'task': 'air_nomad.tasks.send_spam_email',
-        'schedule': crontab()
+        'schedule': 30.0
     }
 }
