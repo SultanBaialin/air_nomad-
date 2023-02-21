@@ -14,13 +14,14 @@ def send_confirmation_tasks_email(user, code):
 def send_notification_task(user_email, order_id, price):
     send_notification(user_email, order_id, price)
 
+
 @app.task
 def send_spam_email():
     ls = [user.email for user in Spam_Contacts.objects.all()]
     send_mail(
         'SPAM SPAM SPAM',
         'THIS IS SPAM LETTER',
-        'JOHNSNOW',
+        'baialinovsultan@gmail.com',
         [*ls],
         fail_silently=False
-        )
+    )

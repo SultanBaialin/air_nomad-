@@ -70,3 +70,7 @@ class RestorePasswordSerializer(serializers.Serializer):
         user.activation_code = ''
         user.save()
         return user
+
+
+class Spam_ContactsSerializer(serializers.Serializer):
+    email = serializers.EmailField(max_length=100, required=True)
