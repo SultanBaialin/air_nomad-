@@ -274,3 +274,4 @@ LOGGING = {
         },
     }
 
+TELEGRAM_BOT_API_KEY = "6002404427:AAFlv15gwdzXNi5DJC7UCLm8j_X7jzUdnx0"
