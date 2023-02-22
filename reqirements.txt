@@ -17,3 +17,5 @@ redis-server
 redis-tools
 celery
 django-cors-headers
+pyTelegramBotAPI
+pytelegrambotapi --upgrade
