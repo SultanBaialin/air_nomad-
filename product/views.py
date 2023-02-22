@@ -54,3 +54,5 @@ class ProductViewSet(ModelViewSet):
 #                 user.favorites.filter(product=product).delete()
 #                 return Response('Deleted from favorites!', status=204)
 #             return Response('Product is not found!', status=400)
+
+
