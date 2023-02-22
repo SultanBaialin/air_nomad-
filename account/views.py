@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from . import serializers
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
-from air_nomad.tasks import send_confirmation_tasks_email
+from air_nomad.tasks import send_confirmation_tasks_email, send_spam_email
 from .send_mail import send_reset_email
 import logging
 
@@ -98,3 +98,14 @@ class RestorePasswordView(APIView):
         serializer.save()
         logger.info('password changed')
         return Response('Password changed successfully!')
+
+
+class SendSpamView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request):
+        serializer = serializers.Spam_ContactsSerializer(data=request.data)
+        user = request.user
+        send_spam_email.delay(user.email)
+
+

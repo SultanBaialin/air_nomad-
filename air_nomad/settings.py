@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'decouple',
     'ckeditor',
     'corsheaders',
+    'django_filters',
 
     # add_apps
     'product',
@@ -57,7 +58,6 @@ INSTALLED_APPS = [
     'favorite',
     'order',
     'review',
-    'rating'
 
 ]
 

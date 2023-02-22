@@ -1,3 +1,4 @@
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
@@ -18,7 +19,7 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     pagination_class = StandartResultPagination
     filter_backends = (SearchFilter, DjangoFilterBackend)
-    search_fields = ('name',)
+    search_fields = ('title',)
     filterset_fields = ('category', 'country_category')
 
     def perform_create(self, serializer):
@@ -28,6 +29,7 @@ class ProductViewSet(ModelViewSet):
         if self.action == 'list':
             return serializers.ProductListSerializer
         return serializers.ProductSerializer
+
 
     def get_permissions(self):
         if self.action in ('update', 'partial_update', 'destroy'):

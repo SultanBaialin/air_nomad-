@@ -16,6 +16,7 @@ class ProductListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class ProductSerializer(serializers.ModelSerializer):
     owner_email = serializers.ReadOnlyField(source='owner.email')
     owner = serializers.ReadOnlyField(source='owner.id')
