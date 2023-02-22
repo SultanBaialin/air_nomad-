@@ -10,10 +10,15 @@ from rest_framework.pagination import PageNumberPagination
 from .models import Product
 from . import serializers
 from .permission import IsAuthor
+import logging
+
+logger = logging.getLogger('main')
+
 
 class StandartResultPagination(PageNumberPagination):
     page_size = 9
     page_query_param = 'page'
+
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
@@ -27,9 +32,10 @@ class ProductViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list':
+            logger.info('list')
             return serializers.ProductListSerializer
+        logger.info('detail')
         return serializers.ProductSerializer
-
 
     def get_permissions(self):
         if self.action in ('update', 'partial_update', 'destroy'):
