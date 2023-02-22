@@ -38,7 +38,7 @@ def lalala (message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton('Новости KaktusMadia')
         markup.add(btn1)
-        bot.send_message(chat_id, 'Я не знаю такой команды! Введите правильный ID', reply_markup=markup)
+        bot.send_message(chat_id, 'Моя Твоя не понимать.  Введите правильный ID', reply_markup=markup)
 
 
 class Command(BaseCommand):
