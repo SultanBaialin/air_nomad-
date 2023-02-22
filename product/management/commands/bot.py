@@ -12,7 +12,7 @@ bot = telebot.TeleBot(settings.TELEGRAM_BOT_API_KEY, threaded=False)
 def get_message(message):
     chat_id = message.chat.id
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton('Показать товары aliOP!')
+    btn1 = types.KeyboardButton('Показать товары Air_nomad!')
     markup.add(btn1)
 
     bot.send_message(chat_id, text="Привет, {0.first_name}! Я бот для Air_nomad".format(message.from_user),
