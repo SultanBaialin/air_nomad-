@@ -10,6 +10,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ('product', 'quantity', 'product_title')
 
+
 class OrderSerializer(serializers.ModelSerializer):
     status = serializers.CharField(read_only=True)
     user = serializers.ReadOnlyField(source='user.email')
